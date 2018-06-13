@@ -1,28 +1,46 @@
 package com.acme.edu;
 
 public class Logger {
+    private static int integerChainSum;
+    public  static void flushIntegerBuffer(){
+        output("primitive: "  + integerChainSum);
+        integerChainSum = 0;
+    }
     public static void log(int message) {
-    System.out.println("primitive: " + message);
- //      System.out.print("primitive: " + message +System.lineSeparator().);
+        integerChainSum = integerChainSum + message;
+
     }
 
     public static void log(byte message) {
-        System.out.println("primitive: " + message);
+        flushIntegerBuffer();
+        output("primitive: " + message);
     }
 
+
+
     public static void log(char message) {
-        System.out.println("char: " + message);
+        flushIntegerBuffer();
+        output("char: " + message);
     }
 
     public static void log(String message) {
-        System.out.println("string: " + message);
+        flushIntegerBuffer();
+        output("string: " + message);
     }
 
     public static void log(boolean message) {
-        System.out.println("primitive: " + message);
+       flushIntegerBuffer();
+        output("primitive: " + message);
     }
 
     public static void log(Object message) {
-        System.out.println("reference: " + message);
+        flushIntegerBuffer();
+        output("reference: " + message);
     }
+
+    //region implementation
+    private static void output(String decoratedMessage) {
+        System.out.println(decoratedMessage);
+    }
+    //endregion
 }
